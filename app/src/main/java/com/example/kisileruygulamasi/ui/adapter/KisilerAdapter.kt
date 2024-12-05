@@ -13,8 +13,6 @@ import com.example.kisileruygulamasi.ui.fragment.AnaSayfaFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 
 class KisilerAdapter(var mContext:Context,var kisilerListesi:List<Kisiler>) : RecyclerView.Adapter<KisilerAdapter.CardTasarimTutucu>() {
-
-
     inner class CardTasarimTutucu(var tasarim:CardTasarimBinding) : RecyclerView.ViewHolder(tasarim.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardTasarimTutucu {
@@ -23,7 +21,6 @@ class KisilerAdapter(var mContext:Context,var kisilerListesi:List<Kisiler>) : Re
         return CardTasarimTutucu(binding)
 
     }
-
     override fun onBindViewHolder(holder: CardTasarimTutucu, position: Int) {
         // Asıl önemli kısım burasıdır. Yapılacak tüm işlemler burada gerçekleştirilir.
         val kisi = kisilerListesi.get(position)
@@ -33,11 +30,13 @@ class KisilerAdapter(var mContext:Context,var kisilerListesi:List<Kisiler>) : Re
         t.textViewKisiTel.text = kisi.kisi_tel
 
         t.cardViewSatir.setOnClickListener {
+            // Seçilen kişinin detayına gitme işlemi burada gerçekleşir
             val gecis = AnaSayfaFragmentDirections.kisiDetayGecis(kisi = kisi)
             Navigation.findNavController(it).navigate(gecis)
         }
 
         t.imageViewSil.setOnClickListener {
+            // Seçilen kişinin silinme işlemi burada gösterilir
             Snackbar.make(it,"${kisi.kisi_ad} silinsin mi? ",Snackbar.LENGTH_SHORT)
                 .setAction("EVET"){
                     sil(kisi.kisi_id.toString())

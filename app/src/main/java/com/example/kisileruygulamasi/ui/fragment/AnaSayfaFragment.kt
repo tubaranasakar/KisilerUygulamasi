@@ -18,9 +18,7 @@ class AnaSayfaFragment : Fragment() {
     private lateinit var binding: FragmentAnaSayfaBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentAnaSayfaBinding.inflate(inflater, container, false)
-
         binding.toolbarAnasayfa.title = "Kişiler"
-
         binding.rv.layoutManager = LinearLayoutManager(requireContext()) //Listelenmenin alt alta görünmesini sağlar
 
         val kisilerListesi = ArrayList<Kisiler>()
@@ -32,22 +30,21 @@ class AnaSayfaFragment : Fragment() {
         kisilerListesi.add(k3)
 
         val kisilerAdapter = KisilerAdapter(requireContext(),kisilerListesi)
-        binding.rv.adapter = kisilerAdapter //Listeyi görüntülemeyi sağlar
+        binding.rv.adapter = kisilerAdapter // Listeyi görüntülemeyi sağlar
 
         binding.fab.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.kisiKayitGecis) //bağlantımız sayesinde KisiKayitFragmenta geçiş sağlandı
+            Navigation.findNavController(it).navigate(R.id.kisiKayitGecis) // Bağlantımız sayesinde KisiKayitFragmenta geçiş sağlandı
         }
 
         binding.searchView.setOnQueryTextListener(object : OnQueryTextListener{
-            override fun onQueryTextChange(newText: String): Boolean { //harf girdikçe,harf sildikçe bize sonuç getiren fonksiyon
+            override fun onQueryTextChange(newText: String): Boolean { // Harf girdikçe,harf sildikçe bize sonuç getiren fonksiyon
                 ara(newText)
                 return true
             }
 
-            override fun onQueryTextSubmit(query: String): Boolean { //klavyedeki arama ikonuna basıldığı zaman sonuç getiren fonksiyon
+            override fun onQueryTextSubmit(query: String): Boolean { // Klavyedeki arama ikonuna basıldığı zaman sonuç getiren fonksiyon
                 ara(query)
                 return true
-
             }
         })
         return binding.root
@@ -56,5 +53,4 @@ class AnaSayfaFragment : Fragment() {
     fun ara(aramaKelimesi:String){
         Log.e("Kişi ara",aramaKelimesi)
     }
-
 }

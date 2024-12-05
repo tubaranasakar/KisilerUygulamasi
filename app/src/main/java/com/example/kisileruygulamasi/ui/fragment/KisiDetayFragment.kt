@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.navArgs
 import com.example.kisileruygulamasi.R
@@ -19,7 +20,7 @@ class KisiDetayFragment : Fragment() {
         binding.toolbarKisiDetay.title = "Kişi Detay"
 
         val bundle:KisiDetayFragmentArgs by navArgs() // Bilgiyi almak için
-        val gelenKisi = bundle.kisi //gönderilen kişi nesnesi burada alınır
+        val gelenKisi = bundle.kisi // Gönderilen kişi nesnesi burada alınır
 
         binding.editTextKisiAd.setText(gelenKisi.kisi_ad)
         binding.editTextKisiTel.setText(gelenKisi.kisi_tel)
@@ -28,8 +29,8 @@ class KisiDetayFragment : Fragment() {
             val kisi_ad = binding.editTextKisiAd.text.toString()
             val kisi_tel = binding.editTextKisiTel.text.toString()
             guncelle(gelenKisi.kisi_id,kisi_ad,kisi_tel)
+            Toast.makeText(requireContext(), "Kişi Güncellendi", Toast.LENGTH_SHORT).show()
         }
-
         return binding.root
     }
 

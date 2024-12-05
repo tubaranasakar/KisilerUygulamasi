@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.kisileruygulamasi.R
 import com.example.kisileruygulamasi.databinding.FragmentKisiKayitBinding
 
@@ -21,7 +22,11 @@ class KisiKayitFragment : Fragment() {
             val kisi_ad = binding.editTextKisiAd.text.toString()
             val kisi_tel = binding.editTextKisiTel.text.toString()
             kaydet(kisi_ad,kisi_tel)
+            Toast.makeText(requireContext(), "Kişi Kaydedildi", Toast.LENGTH_SHORT).show()
+
         }
+
+
         return binding.root
     }
 
